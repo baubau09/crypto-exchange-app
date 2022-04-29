@@ -23,26 +23,50 @@ int getUserOption() {
     return userOption;
 }
 
+void printHelp() {
+    cout << "Help - your aim is to make money" << endl;
+}
+
+void printMarketStats() {
+    cout << "Market looks good" << endl;
+}
+
+void makeOffer() {
+    cout << "Please choose which currency do you want to sell" << endl;
+}
+
+void makeBid() {
+    cout << "Please choose the currency you want to buy" << endl;
+}
+
+void printWallet() {
+    cout << "You look rich" << endl;
+}
+
+void goToNextTimeFrame() {
+    cout << "continueeee" << endl;
+}
+
 void processOption(int userOption) {
     switch (userOption)
     {
     case 1: // help
-        cout << "Help - your aim is to make money" << endl;
+        printHelp();
         break;
     case 2: // exchange stats
-        cout << "Market looks good" << endl;
+        printMarketStats();
         break;
     case 3: // make an offer
-        cout << "Please choose which currency do you want to sell" << endl;
+        makeOffer();
         break;
     case 4: // make a bid
-        cout << "Please choose the currency you want to buy" << endl;
+        makeBid();
         break;
     case 5: // print wallet
-        cout << "You look rich" << endl;
+        printWallet();
         break;
     case 6: // Continue
-        cout << "continueeee" << endl;
+        goToNextTimeFrame();
         break;
     case 7:
         cout << "Bye bye" << endl;
