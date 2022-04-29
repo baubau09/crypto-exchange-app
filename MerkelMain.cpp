@@ -3,8 +3,6 @@ using namespace std;
 
 MerkelMain::MerkelMain() {}
 
-void MerkelMain::init() {}
-
 void MerkelMain::printMenu() {
     cout << "===========MENU===========" << endl;
     cout << "1. Print Help" << endl;
@@ -78,4 +76,14 @@ void MerkelMain::processUserOption(int userOption) {
         cout << "Invalid choice! Please only choose from 1 - 7" << endl;
         break;
     }  
+}
+
+void MerkelMain::init() {
+    int userOption = 0;
+    do {
+        printMenu();
+        userOption = getUserOption();
+        processUserOption(userOption);
+
+    } while (userOption != 7);
 }
