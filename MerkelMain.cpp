@@ -1,4 +1,7 @@
 #include "MerkelMain.h"
+#include <iostream>
+#include <vector>
+
 using namespace std;
 
 MerkelMain::MerkelMain() {}
@@ -16,13 +19,18 @@ void MerkelMain::printMenu() {
     cout << "Please input a number from 1-7" << endl;
 }
 
+void MerkelMain::loadOrderBook() {
+
+    orders.push_back(OrderBookEntry{1000,0.02,"2020/03/17 17:01:24.884492","BTC/USDT",OrderBookType::bid});
+    orders.push_back(OrderBookEntry{2000,0.02,"2020/03/17 17:01:24.884492","BTC/USDT",OrderBookType::bid});
+}
 
 void MerkelMain::printHelp() {
     std::cout << "Help - your aim is to make money. Analyse the market and make bids and offers. " << std::endl;
 }
 
 void MerkelMain::printMarketStats() {
-    std::cout << "Market looks good. " << std::endl;
+    std::cout << "Market contains: " << orders.size() << " entries." << std::endl;
 }
 
 void MerkelMain::enterOffer() {
@@ -79,6 +87,7 @@ void MerkelMain::processUserOption(int userOption) {
 }
 
 void MerkelMain::init() {
+    loadOrderBook();
     int userOption = 0;
     do {
         printMenu();
@@ -87,3 +96,4 @@ void MerkelMain::init() {
 
     } while (userOption != 7);
 }
+
