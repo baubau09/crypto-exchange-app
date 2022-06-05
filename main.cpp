@@ -1,10 +1,10 @@
 #include <iostream>
-#include "MerkelMain.h"
+#include "AppMain.h"
 
 using namespace std;
 
 int main() {
-    MerkelMain app{};
+    AppMain app{};
 
     app.init();
 
