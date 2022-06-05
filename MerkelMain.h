@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
 #include <iostream>
-using namespace std;
 #include <vector>
 #include "OrderBookEntry.h"
+using namespace std;
 
 class MerkelMain {
     public:
