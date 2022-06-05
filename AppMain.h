@@ -5,9 +5,9 @@
 #include "OrderBookEntry.h"
 using namespace std;
 
-class MerkelMain {
+class AppMain {
     public:
-        MerkelMain();
+        AppMain();
         void init();
     private:
         std::vector<OrderBookEntry> orders;
