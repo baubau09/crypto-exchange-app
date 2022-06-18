@@ -1,4 +1,5 @@
 #include "AppMain.h"
+#include "CSVReader.h"
 #include <iostream>
 #include <vector>
 
@@ -20,33 +21,43 @@ void AppMain::printMenu() {
 }
 
 void AppMain::loadOrderBook() {
-
-    orders.push_back(OrderBookEntry{1000,0.02,"2020/03/17 17:01:24.884492","BTC/USDT",OrderBookType::bid});
-    orders.push_back(OrderBookEntry{2000,0.02,"2020/03/17 17:01:24.884492","BTC/USDT",OrderBookType::bid});
+    orders = CSVReader::readCSV("20200317.csv");
 }
 
 void AppMain::printHelp() {
-    std::cout << "Help - your aim is to make money. Analyse the market and make bids and offers. " << std::endl;
+    cout << "Help - your aim is to make money. Analyse the market and make bids and offers. " << endl;
 }
 
 void AppMain::printMarketStats() {
-    std::cout << "Market contains: " << orders.size() << " entries." << std::endl;
+    cout << "Market contains: " << orders.size() << " entries." << endl;
+    unsigned int bids = 0;
+    unsigned int asks = 0;
+    for (OrderBookEntry& e : orders) {
+        if (e.getOrderType() == OrderBookType::ask) {
+            asks++;
+        }
+        if (e.getOrderType() == OrderBookType::bid) {
+            bids++;
+        }
+    }
+    cout << "OrderBook asks: " << asks << ", bids: " << bids << endl;
+
 }
 
 void AppMain::enterOffer() {
-    std::cout << "Mark and offer - enter the amount " << std::endl;
+    cout << "Mark and offer - enter the amount " << endl;
 }
 
 void AppMain::enterBid() {
-    std::cout << "Make a bid - enter the amount" << std::endl;
+    cout << "Make a bid - enter the amount" << endl;
 }
 
 void AppMain::printWallet() {
-    std::cout << "Your wallet is empty. " << std::endl;
+    cout << "Your wallet is empty. " << endl;
 }
         
 void AppMain::goToNextTimeFrame() {
-    std::cout << "Going to next time frame. " << std::endl;
+    cout << "Going to next time frame. " << endl;
 }
  
 int AppMain::getUserOption() {
