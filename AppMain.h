@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "OrderBookEntry.h"
+#include "OrderBook.h"
 using namespace std;
 
 class AppMain {
@@ -10,8 +11,7 @@ class AppMain {
         AppMain();
         void init();
     private:
-        std::vector<OrderBookEntry> orders;
-        void loadOrderBook();
+        OrderBook orderBook{"20200317.csv"};
         void printMenu();
         void printHelp();
         void printMarketStats();

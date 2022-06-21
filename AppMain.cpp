@@ -20,27 +20,23 @@ void AppMain::printMenu() {
     cout << "Please input a number from 1-7" << endl;
 }
 
-void AppMain::loadOrderBook() {
-    orders = CSVReader::readCSV("20200317.csv");
-}
-
 void AppMain::printHelp() {
     cout << "Help - your aim is to make money. Analyse the market and make bids and offers. " << endl;
 }
 
 void AppMain::printMarketStats() {
-    cout << "Market contains: " << orders.size() << " entries." << endl;
-    unsigned int bids = 0;
-    unsigned int asks = 0;
-    for (OrderBookEntry& e : orders) {
-        if (e.getOrderType() == OrderBookType::ask) {
-            asks++;
-        }
-        if (e.getOrderType() == OrderBookType::bid) {
-            bids++;
-        }
-    }
-    cout << "OrderBook asks: " << asks << ", bids: " << bids << endl;
+    //cout << "Market contains: " << orders.size() << " entries." << endl;
+    // unsigned int bids = 0;
+    // unsigned int asks = 0;
+    // for (OrderBookEntry& e : orders) {
+    //     if (e.getOrderType() == OrderBookType::ask) {
+    //         asks++;
+    //     }
+    //     if (e.getOrderType() == OrderBookType::bid) {
+    //         bids++;
+    //     }
+    // }
+    // cout << "OrderBook asks: " << asks << ", bids: " << bids << endl;
 
 }
 
@@ -98,7 +94,6 @@ void AppMain::processUserOption(int userOption) {
 }
 
 void AppMain::init() {
-    loadOrderBook();
     int userOption = 0;
     do {
         printMenu();
