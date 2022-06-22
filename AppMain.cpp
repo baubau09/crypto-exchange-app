@@ -25,9 +25,10 @@ void AppMain::printHelp() {
 }
 
 void AppMain::printMarketStats() {
+    string currentTimeStamp = "2020/03/17 17:01:24.884492";
     for (string p : orderBook.getKnownProducts()) {
         cout << "Product: " << p << endl;
-        vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, "2020/03/17 17:01:24.884492");
+        vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, currentTimeStamp);
         cout << "Asks seen: " << entries.size() << endl;
         cout << "Min ask price: " << orderBook.getHighPrice(entries) << endl;
         cout << "Max ask price: " << orderBook.getLowPrice(entries) << endl;
