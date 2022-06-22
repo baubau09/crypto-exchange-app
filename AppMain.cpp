@@ -38,7 +38,14 @@ void AppMain::printMarketStats() {
 }
 
 void AppMain::enterOffer() {
-    cout << "Mark and offer - enter the amount " << endl;
+    cout << "Make an ask - enter the amount: product,price,amount. E.g: ETC/BTC,200,0.5" << endl;
+    
+    string input;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    getline(std::cin, input);
+    
+    cout << "You typed: " << input << endl;
+
 }
 
 void AppMain::enterBid() {
