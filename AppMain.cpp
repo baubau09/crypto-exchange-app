@@ -25,19 +25,15 @@ void AppMain::printHelp() {
 }
 
 void AppMain::printMarketStats() {
-    //cout << "Market contains: " << orders.size() << " entries." << endl;
-    // unsigned int bids = 0;
-    // unsigned int asks = 0;
-    // for (OrderBookEntry& e : orders) {
-    //     if (e.getOrderType() == OrderBookType::ask) {
-    //         asks++;
-    //     }
-    //     if (e.getOrderType() == OrderBookType::bid) {
-    //         bids++;
-    //     }
-    // }
-    // cout << "OrderBook asks: " << asks << ", bids: " << bids << endl;
-
+    for (string p : orderBook.getKnownProducts()) {
+        cout << "Product: " << p << endl;
+        vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, "2020/03/17 17:01:24.884492");
+        cout << "Asks seen: " << entries.size() << endl;
+        cout << "Min ask price: " << orderBook.getHighPrice(entries) << endl;
+        cout << "Max ask price: " << orderBook.getLowPrice(entries) << endl;
+        cout << "--" << endl;
+    }
+   
 }
 
 void AppMain::enterOffer() {

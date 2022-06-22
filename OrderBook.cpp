@@ -9,9 +9,51 @@ OrderBook::OrderBook(string fileName) {
 
 vector<string> OrderBook::getKnownProducts() {
     vector<string> products;
+    map<string, bool> prodMap;
+
+    for (OrderBookEntry& e : orders) {
+        prodMap[e.getProduct()] = true;
+    }
+
+    for (auto& productStringBoolPair : prodMap) {
+        products.push_back(productStringBoolPair.first);
+    }
+
     return products;
 }
 
 vector<OrderBookEntry> OrderBook::getOrders(OrderBookType type, string product, string timestamp) {
-    return orders;
+    vector<OrderBookEntry> orders_sub;
+
+    for (OrderBookEntry& e : orders) {
+        if (e.getOrderType() == type &&
+            e.getProduct() == product &&
+            e.getTimeStamp() == timestamp) {
+                orders_sub.push_back(e);
+        }
+    }
+
+    return orders_sub;
+}
+
+double OrderBook::getHighPrice(vector<OrderBookEntry>& orders) {
+    double max = 0.0;
+
+    for (OrderBookEntry& e : orders) {
+        if (e.getPrice() > max) {
+            max = e.getPrice();
+        }
+    }
+    return max;
+}
+
+double OrderBook::getLowPrice(vector<OrderBookEntry>& orders) {
+    double min = orders[0].getPrice();
+
+    for (OrderBookEntry& e : orders) {
+        if (e.getPrice() < min) {
+            min = e.getPrice();
+        }
+    }
+    return min;
 }
