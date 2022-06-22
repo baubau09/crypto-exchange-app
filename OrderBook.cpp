@@ -68,3 +68,19 @@ string OrderBook::getEarliestTime() {
     return earliest;
 }
 
+string OrderBook::getNextTime(string timestamp) {
+    string next_timestamp = "";
+    for (OrderBookEntry& e : orders) {
+        if (e.getTimeStamp() > timestamp) {
+           next_timestamp = e.getTimeStamp();
+           break;
+        }
+    }
+
+    if (next_timestamp == "") {
+        next_timestamp = orders[0].getTimeStamp();
+    }
+
+    return next_timestamp;
+}
+

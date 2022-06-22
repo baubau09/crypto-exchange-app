@@ -14,7 +14,8 @@ class OrderBook {
         vector<OrderBookEntry> getOrders(OrderBookType type, string product, string timestamp); // return vector of Orders according to the sent filters
         static double getHighPrice(vector<OrderBookEntry>& orders);
         static double getLowPrice(vector<OrderBookEntry>& orders);
-        string getEarliestTime();
+        string getEarliestTime(); // return the earliest time in the orderbook
+        string getNextTime(string timestamp); // return the next time after the sent time in the orderbook, if there is no next timestamp, wraps around to the start
     private:
         vector<OrderBookEntry> orders;
 };

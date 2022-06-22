@@ -26,10 +26,9 @@ void AppMain::printHelp() {
 }
 
 void AppMain::printMarketStats() {
-    string currentTimeStamp = "2020/03/17 17:01:24.884492";
     for (string p : orderBook.getKnownProducts()) {
         cout << "Product: " << p << endl;
-        vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, currentTimeStamp);
+        vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, currentTime);
         cout << "Asks seen: " << entries.size() << endl;
         cout << "Min ask price: " << orderBook.getHighPrice(entries) << endl;
         cout << "Max ask price: " << orderBook.getLowPrice(entries) << endl;
@@ -51,7 +50,8 @@ void AppMain::printWallet() {
 }
         
 void AppMain::goToNextTimeFrame() {
-    cout << "Going to next time frame. " << endl;
+    currentTime = orderBook.getNextTime(currentTime);
+    cout << "New time is: " << currentTime << endl;
 }
  
 int AppMain::getUserOption() {
