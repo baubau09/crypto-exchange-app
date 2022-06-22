@@ -14,6 +14,7 @@ class OrderBookEntry {
     public:
         OrderBookEntry(double _price, double _amount, std::string _timestamp, std::string _product, OrderBookType _orderType);
         static OrderBookType stringsToOrderBookType(std::string s);
+        static bool compareByTimestamp(const OrderBookEntry& e1, const OrderBookEntry& e2);
         double getPrice();
         double getAmount();
         std::string getTimeStamp();

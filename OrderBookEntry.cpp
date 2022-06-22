@@ -51,3 +51,7 @@ void OrderBookEntry::setProduct(std::string _product) {
 void OrderBookEntry::setType(OrderBookType _type) {
     this->orderType = _type;
 }
+
+bool OrderBookEntry::compareByTimestamp(const OrderBookEntry& e1, const OrderBookEntry& e2) {
+    return e1.timestamp < e2.timestamp;
+}

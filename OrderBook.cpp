@@ -78,7 +78,7 @@ string OrderBook::getNextTime(string timestamp) {
     }
 
     if (next_timestamp == "") {
-        next_timestamp = orders[0].getTimeStamp();
+        next_timestamp = getEarliestTime();
     }
 
     return next_timestamp;
