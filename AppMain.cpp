@@ -71,6 +71,7 @@ void AppMain::enterOffer() {
                 tokens[0],
                 OrderBookType::ask
             );
+            orderBook.insertOrder(obe);
         } catch (exception& e) {
             cout << "Bad OrderBookEntry input" << endl;
         }

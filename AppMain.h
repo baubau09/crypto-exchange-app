@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <ios>
+#include <limits>
 #include <cmath>
 #include <vector>
 #include "OrderBookEntry.h"

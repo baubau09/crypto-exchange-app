@@ -84,3 +84,6 @@ string OrderBook::getNextTime(string timestamp) {
     return next_timestamp;
 }
 
+void OrderBook::insertOrder(OrderBookEntry& order) {
+    orders.push_back(order);
+}
