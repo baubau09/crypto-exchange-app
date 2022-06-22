@@ -41,7 +41,7 @@ void AppMain::enterOffer() {
     cout << "Make an ask - enter the amount: product,price,amount. E.g: ETH/BTC,200,0.5" << endl;
     
     string input;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    //cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, input);
 
     vector<string> tokens = CSVReader::tokenise(input, ',');
@@ -96,7 +96,14 @@ void AppMain::goToNextTimeFrame() {
  
 int AppMain::getUserOption() {
     int userOption = 0;
-    cin >> userOption;
+    string line;
+    cout << "Type in 1-7" << std::endl;
+    getline(cin, line);
+    try {
+        userOption = std::stoi(line);
+    } catch(const std::exception& e) {
+
+    }
     cout << "You chose: " << userOption << endl;
     return userOption;
 }
