@@ -12,6 +12,7 @@ class AppMain {
         void init();
     private:
         OrderBook orderBook{"20200317.csv"};
+        string currentTime;
         void printMenu();
         void printHelp();
         void printMarketStats();

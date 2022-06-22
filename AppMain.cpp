@@ -16,6 +16,7 @@ void AppMain::printMenu() {
     cout << "5. Print wallet" << endl;
     cout << "6. Continue" << endl;
     cout << "7. Exit" << endl;
+    cout << "Current time is: " << currentTime << endl;
     cout << "=========END MENU=========" << endl;
     cout << "Please input a number from 1-7" << endl;
 }
@@ -92,6 +93,7 @@ void AppMain::processUserOption(int userOption) {
 
 void AppMain::init() {
     int userOption = 0;
+    currentTime = orderBook.getEarliestTime();
     do {
         printMenu();
         userOption = getUserOption();

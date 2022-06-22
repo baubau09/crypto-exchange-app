@@ -57,3 +57,14 @@ double OrderBook::getLowPrice(vector<OrderBookEntry>& orders) {
     }
     return min;
 }
+
+string OrderBook::getEarliestTime() {
+    string earliest = orders[0].getTimeStamp();
+    for (OrderBookEntry& e : orders) {
+        if (e.getTimeStamp() < earliest) {
+            earliest = e.getTimeStamp();
+        }
+    }
+    return earliest;
+}
+
