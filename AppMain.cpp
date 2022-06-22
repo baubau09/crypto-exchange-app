@@ -38,11 +38,43 @@ void AppMain::printMarketStats() {
 }
 
 void AppMain::enterOffer() {
-    cout << "Make an ask - enter the amount: product,price,amount. E.g: ETC/BTC,200,0.5" << endl;
+    cout << "Make an ask - enter the amount: product,price,amount. E.g: ETH/BTC,200,0.5" << endl;
     
     string input;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    getline(std::cin, input);
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, input);
+
+    vector<string> tokens = CSVReader::tokenise(input, ',');
+
+    if (tokens.size() != 3) {
+        cout << "Bad input! " << input << endl;
+    } else if ((!TypeChecker::is_number(tokens[1])) || (!TypeChecker::is_number(tokens[2])) || (!TypeChecker::is_product(tokens[0], orderBook))) {
+
+        // check if price or amount is a valid double
+        if (!TypeChecker::is_number(tokens[1])) {
+            cout << "Invalid price " << tokens[1] << endl;
+        }
+        if (!TypeChecker::is_number(tokens[2])) {
+            cout << "Invalid amount " << tokens[2] << endl;
+        }
+
+        // check if product is correct input
+        if (!TypeChecker::is_product(tokens[0], orderBook)) {
+            cout << "Invalid product " << tokens[0] << endl;
+        }
+    } else {
+        try {
+            OrderBookEntry obe = CSVReader::stringsToOBE(
+                tokens[1],
+                tokens[2],
+                currentTime,
+                tokens[0],
+                OrderBookType::ask
+            );
+        } catch (exception& e) {
+            cout << "Bad OrderBookEntry input" << endl;
+        }
+    }
     
     cout << "You typed: " << input << endl;
 

@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <cmath>
 #include <vector>
 #include "OrderBookEntry.h"
 #include "OrderBook.h"
+#include "TypeChecker.h"
 using namespace std;
 
 class AppMain {
