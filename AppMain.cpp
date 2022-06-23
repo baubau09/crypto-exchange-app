@@ -133,6 +133,15 @@ void AppMain::printWallet() {
 }
         
 void AppMain::goToNextTimeFrame() {
+    cout << "Going to next time frame. " << endl;
+    for (string &p : orderBook.getKnownProducts()) {
+        cout << "Matching..." << p << endl;
+        vector<OrderBookEntry> sales = orderBook.matchAsksToBids(p, currentTime);
+        cout << "Sales: " << sales.size() << endl;
+        for (OrderBookEntry &sale : sales) {
+            cout << "Sale price: " << sale.getPrice() << " amount " << sale.getAmount() << endl;
+        }
+    }
     currentTime = orderBook.getNextTime(currentTime);
     cout << "New time is: " << currentTime << endl;
 }
