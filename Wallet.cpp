@@ -55,7 +55,7 @@ bool Wallet::canFulfillOrder(OrderBookEntry order) {
     if (order.getOrderType() == OrderBookType::ask) {
         double amount = order.getAmount();
         string currency = currencies[0];
-        cout << "Wallet can fulfill order " << currency << " : " << amount << endl; 
+        cout << "Wallet::canFulfillOrder " << currency << " : " << amount << endl; 
         return containsCurrency(currency, amount);
     }
 
@@ -63,7 +63,7 @@ bool Wallet::canFulfillOrder(OrderBookEntry order) {
     if (order.getOrderType() == OrderBookType::bid) {
         double amount = order.getAmount() * order.getPrice();
         string currency = currencies[1];
-        cout << "Wallet can fulfill order " << currency << " : " << amount << endl; 
+        cout << "Wallet::canFulfillOrder " << currency << " : " << amount << endl; 
         return containsCurrency(currency, amount);
     }
 

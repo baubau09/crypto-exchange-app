@@ -78,7 +78,7 @@ void AppMain::enterOffer() {
                 OrderBookType::ask
             );
             if (wallet.canFulfillOrder(obe)) {
-                cout << "Wallet looks good." << endl; 
+                cout << "Wallet looks good and can fulfill order." << endl;
                 orderBook.insertOrder(obe);
             } else {
                 cout << "Wallet has insufficient funds." << endl;
@@ -126,7 +126,12 @@ void AppMain::enterBid() {
                 tokens[0],
                 OrderBookType::bid
             );
-            orderBook.insertOrder(obe);
+            if (wallet.canFulfillOrder(obe)) {
+                cout << "Wallet looks good." << endl; 
+                orderBook.insertOrder(obe);
+            } else {
+                cout << "Wallet has insufficient funds." << endl;
+            }
         } catch (exception& e) {
             cout << "Bad OrderBookEntry input" << endl;
         }
@@ -136,11 +141,6 @@ void AppMain::enterBid() {
 }
 
 void AppMain::printWallet() {
-    wallet.insertCurrency("BTC",10);
-    wallet.insertCurrency("USDT",10000);
-    cout << wallet.toString() << endl;
-
-    wallet.removeCurrency("USDT",1000);
     cout << wallet.toString() << endl;
     
 }
@@ -206,6 +206,7 @@ void AppMain::processUserOption(int userOption) {
 void AppMain::init() {
     int userOption = 0;
     currentTime = orderBook.getEarliestTime();
+    wallet.insertCurrency("BTC",20);
     do {
         printMenu();
         userOption = getUserOption();
