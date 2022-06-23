@@ -159,6 +159,9 @@ void AppMain::goToNextTimeFrame() {
         cout << "Sales: " << sales.size() << endl;
         for (OrderBookEntry &sale : sales) {
             cout << "Sale price: " << sale.getPrice() << " amount " << sale.getAmount() << endl;
+            if (sale.getUsername() == "simuser") {
+                wallet.processSale(sale);
+            }
         }
     }
     currentTime = orderBook.getNextTime(currentTime);
