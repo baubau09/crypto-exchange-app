@@ -129,7 +129,6 @@ void AppMain::enterBid() {
 }
 
 void AppMain::printWallet() {
-    cout << "Your wallet is empty. " << endl;
     cout << wallet.toString() << endl;
 }
         
