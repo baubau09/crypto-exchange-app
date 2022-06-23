@@ -2,7 +2,7 @@
 
 OrderBookEntry::OrderBookEntry() {}
 
-OrderBookEntry::OrderBookEntry(double _price, double _amount, std::string _timestamp, std::string _product, OrderBookType _orderType) : price(_price), amount(_amount), timestamp(_timestamp), product(_product), orderType(_orderType) {}
+OrderBookEntry::OrderBookEntry(double _price, double _amount, std::string _timestamp, std::string _product, OrderBookType _orderType, std::string _username) : price(_price), amount(_amount), timestamp(_timestamp), product(_product), orderType(_orderType), username(_username) {}
 
 OrderBookType OrderBookEntry::stringsToOrderBookType(std::string s) {
     if (s == "ask") {
@@ -11,8 +11,11 @@ OrderBookType OrderBookEntry::stringsToOrderBookType(std::string s) {
     if (s == "bid") {
         return OrderBookType::bid;
     }
-    if (s == "sale") {
-        return OrderBookType::sale;
+    if (s == "asksale") {
+        return OrderBookType::asksale;
+    }
+    if (s == "bidsale") {
+        return OrderBookType::bidsale;
     }
     return OrderBookType::unknown;
 }
@@ -37,6 +40,10 @@ OrderBookType OrderBookEntry::getOrderType() {
     return orderType;
 }
 
+std::string OrderBookEntry::getUsername() {
+    return username;
+}
+
 void OrderBookEntry::setPrice(double _price) {
     this->price = _price;
 }
@@ -55,6 +62,10 @@ void OrderBookEntry::setProduct(std::string _product) {
 
 void OrderBookEntry::setType(OrderBookType _type) {
     this->orderType = _type;
+}
+
+void OrderBookEntry::setUsername(std::string _username) {
+    this->username = _username;
 }
 
 bool OrderBookEntry::compareByTimestamp(const OrderBookEntry& e1, const OrderBookEntry& e2) {

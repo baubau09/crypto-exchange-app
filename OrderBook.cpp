@@ -99,7 +99,18 @@ vector<OrderBookEntry> OrderBook::matchAsksToBids(string product, string timesta
     for (OrderBookEntry& ask : asks) {
         for (OrderBookEntry& bid : bids) {
             if (bid.getPrice() >= ask.getPrice()) {
-                OrderBookEntry sale{ask.getPrice(), 0, timestamp, product, OrderBookType::sale};
+                OrderBookEntry sale{ask.getPrice(), 0, timestamp, product, OrderBookType::asksale}; // asksale for default dataset username
+                if (bid.getUsername() == "simuser") {
+                    sale.setType(OrderBookType::bidsale);
+                    sale.setUsername("simuser");
+                }
+                if (ask.getUsername() == "simuser") {
+                    sale.setType(OrderBookType::asksale);
+                    sale.setUsername("simuser");
+                }
+                // if (bid.getUsername() == "dataset") {
+                //     sale.setType(OrderBookType::asksale);
+                // }
                 sale.setPrice(ask.getPrice());
 
                 if (bid.getAmount() == ask.getAmount()) {

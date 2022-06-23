@@ -69,14 +69,17 @@ void AppMain::enterOffer() {
         }
     } else {
         transform(tokens[0].begin(), tokens[0].end() ,tokens[0].begin(), ::toupper);
+
         try {
             OrderBookEntry obe = CSVReader::stringsToOBE(
                 tokens[1],
                 tokens[2],
                 currentTime,
                 tokens[0],
-                OrderBookType::ask
+                OrderBookType::ask,
+                "simuser"
             );
+
             if (wallet.canFulfillOrder(obe)) {
                 cout << "Wallet looks good and can fulfill order." << endl;
                 orderBook.insertOrder(obe);
@@ -118,14 +121,17 @@ void AppMain::enterBid() {
         }
     } else {
         transform(tokens[0].begin(), tokens[0].end() ,tokens[0].begin(), ::toupper);
+
         try {
             OrderBookEntry obe = CSVReader::stringsToOBE(
                 tokens[1],
                 tokens[2],
                 currentTime,
                 tokens[0],
-                OrderBookType::bid
+                OrderBookType::bid,
+                "simuser"
             );
+
             if (wallet.canFulfillOrder(obe)) {
                 cout << "Wallet looks good." << endl; 
                 orderBook.insertOrder(obe);
