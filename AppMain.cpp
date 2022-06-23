@@ -29,9 +29,14 @@ void AppMain::printMarketStats() {
     for (string p : orderBook.getKnownProducts()) {
         cout << "Product: " << p << endl;
         vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, currentTime);
+        vector<OrderBookEntry> entriesBid = orderBook.getOrders(OrderBookType::bid, p, currentTime);
+
         cout << "Asks seen: " << entries.size() << endl;
         cout << "Min ask price: " << orderBook.getHighPrice(entries) << endl;
         cout << "Max ask price: " << orderBook.getLowPrice(entries) << endl;
+        cout << "Bids seen: " << entriesBid.size() << endl;
+        cout << "Min bid price: " << orderBook.getHighPrice(entriesBid) << endl;
+        cout << "Max bid price: " << orderBook.getLowPrice(entriesBid) << endl;
         cout << "--" << endl;
     }
    
@@ -82,7 +87,45 @@ void AppMain::enterOffer() {
 }
 
 void AppMain::enterBid() {
-    cout << "Make a bid - enter the amount" << endl;
+    cout << "Make a bid - enter the amount: product,price,amount. E.g: ETH/BTC,200,0.5" << endl;
+
+    string input;
+    getline(cin, input);
+
+    vector<string> tokens = CSVReader::tokenise(input, ',');
+
+    if (tokens.size() != 3) {
+        cout << "Bad input! " << input << endl;
+    } else if ((!TypeChecker::is_number(tokens[1])) || (!TypeChecker::is_number(tokens[2])) || (!TypeChecker::is_product(tokens[0], orderBook))) {
+
+        // check if price or amount is a valid double
+        if (!TypeChecker::is_number(tokens[1])) {
+            cout << "Invalid price " << tokens[1] << endl;
+        }
+        if (!TypeChecker::is_number(tokens[2])) {
+            cout << "Invalid amount " << tokens[2] << endl;
+        }
+
+        // check if product is correct input
+        if (!TypeChecker::is_product(tokens[0], orderBook)) {
+            cout << "Invalid product " << tokens[0] << endl;
+        }
+    } else {
+        try {
+            OrderBookEntry obe = CSVReader::stringsToOBE(
+                tokens[1],
+                tokens[2],
+                currentTime,
+                tokens[0],
+                OrderBookType::bid
+            );
+            orderBook.insertOrder(obe);
+        } catch (exception& e) {
+            cout << "Bad OrderBookEntry input" << endl;
+        }
+    }
+    
+    cout << "You typed: " << input << endl;
 }
 
 void AppMain::printWallet() {
