@@ -16,7 +16,7 @@ class AppMain {
         AppMain();
         void init();
     private:
-        OrderBook orderBook{"20200601.csv"};
+        OrderBook orderBook{"20200317.csv"};
         Wallet wallet;
         string currentTime;
         void printMenu();

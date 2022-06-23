@@ -129,7 +129,13 @@ void AppMain::enterBid() {
 }
 
 void AppMain::printWallet() {
+    wallet.insertCurrency("BTC",10);
+    wallet.insertCurrency("USDT",10000);
     cout << wallet.toString() << endl;
+
+    wallet.removeCurrency("USDT",1000);
+    cout << wallet.toString() << endl;
+    
 }
         
 void AppMain::goToNextTimeFrame() {
@@ -193,7 +199,6 @@ void AppMain::processUserOption(int userOption) {
 void AppMain::init() {
     int userOption = 0;
     currentTime = orderBook.getEarliestTime();
-    wallet.insertCurrency("BTC",10);
     do {
         printMenu();
         userOption = getUserOption();

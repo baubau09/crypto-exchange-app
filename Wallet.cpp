@@ -22,6 +22,22 @@ void Wallet::insertCurrency(string type, double amount) {
 
 bool Wallet::removeCurrency(string type, double amount) {
 
+    if (amount < 0) {
+        return false;
+    }
+    if (currencies.count(type) == 0) {
+        cout << "No currency for " << type << endl;
+        return false;
+    } else {
+        if (containsCurrency(type, amount)) { // we have enough to remove
+            cout << "Removing " << amount << " " << type << endl; 
+            currencies[type] -= amount;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     return false;
 }
 
