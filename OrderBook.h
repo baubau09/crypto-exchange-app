@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
 #include "OrderBookEntry.h"
+#include "CSVReader.h"
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <map>
 
 using namespace std;

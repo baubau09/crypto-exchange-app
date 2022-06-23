@@ -1,5 +1,4 @@
 #include "OrderBook.h"
-#include "CSVReader.h"
 
 
 OrderBook::OrderBook(string fileName) {
@@ -86,4 +85,5 @@ string OrderBook::getNextTime(string timestamp) {
 
 void OrderBook::insertOrder(OrderBookEntry& order) {
     orders.push_back(order);
+    sort(orders.begin(), orders.end(), OrderBookEntry::compareByTimestamp);
 }
