@@ -21,3 +21,17 @@ bool TypeChecker::is_product(const string& s, OrderBook& orderBook) {
     }
     return false;
 }
+
+bool TypeChecker::is_ask_bid(const string& s) {
+    if (s == "ask" || s == "bid") {
+        return true;
+    }
+    return false;
+}
+
+bool TypeChecker::is_min_max(const string& s) {
+    if (s == "min" || s == "max") {
+        return true;
+    }
+    return false;
+}
