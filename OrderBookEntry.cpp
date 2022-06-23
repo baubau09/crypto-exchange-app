@@ -55,3 +55,11 @@ void OrderBookEntry::setType(OrderBookType _type) {
 bool OrderBookEntry::compareByTimestamp(const OrderBookEntry& e1, const OrderBookEntry& e2) {
     return e1.timestamp < e2.timestamp;
 }
+
+bool OrderBookEntry::compareByPriceAsc(OrderBookEntry& e1, OrderBookEntry& e2) {
+    return e1.price < e2.price;
+}
+
+bool OrderBookEntry::compareByPriceDesc(OrderBookEntry& e1, OrderBookEntry& e2) {
+    return e1.price > e2.price;
+}
