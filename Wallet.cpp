@@ -71,8 +71,33 @@ bool Wallet::canFulfillOrder(OrderBookEntry order) {
 }
 
 void Wallet::processSale(OrderBookEntry& sale) {
+    vector<string> currs = CSVReader::tokenise(sale.getProduct(), '/');
+    // ask
+    if (sale.getOrderType() == OrderBookType::asksale)
+    {
+        double outgoingAmount = sale.getAmount();
+        string outgoingCurrency = currs[0];
+        double incomingAmount = sale.getAmount() * sale.getPrice();
+        string incomingCurrency = currs[1];
 
+        currencies[incomingCurrency] += incomingAmount;
+        currencies[outgoingCurrency] -= outgoingAmount;
+
+    }
+    // bid
+    if (sale.getOrderType() == OrderBookType::bidsale)
+    {
+        double incomingAmount = sale.getAmount();
+        string incomingCurrency = currs[0];
+        double outgoingAmount = sale.getAmount() * sale.getPrice();
+        string outgoingCurrency = currs[1];
+
+        currencies[incomingCurrency] += incomingAmount;
+        currencies[outgoingCurrency] -= outgoingAmount;
+    }
 }
+
+
 
 string Wallet::toString() {
     string s;
@@ -83,5 +108,11 @@ string Wallet::toString() {
     }
     return s;
 }
+
+std::ostream& operator<<(std::ostream& os,  Wallet& wallet) {
+    os << wallet.toString();
+    return os;
+}
+
 
 
