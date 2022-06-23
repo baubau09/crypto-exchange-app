@@ -4,6 +4,7 @@
 #include <ios>
 #include <limits>
 #include <cmath>
+#include <algorithm>
 #include <vector>
 #include "OrderBookEntry.h"
 #include "OrderBook.h"

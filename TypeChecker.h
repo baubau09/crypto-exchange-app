@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "OrderBook.h"
+#include "CSVReader.h"
 
 class TypeChecker {
     public:

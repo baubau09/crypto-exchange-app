@@ -12,14 +12,17 @@ bool TypeChecker::is_number(const string& s) {
 
 
 bool TypeChecker::is_product(const string& s, OrderBook& orderBook) {
-    vector<string> products = orderBook.getKnownProducts();
-    for (int i = 0; i < products.size(); i++)
-    {
-        if (s == products[i]) {
-            return true;
-        }
+    vector<string> products = CSVReader::tokenise(s,'/');
+
+    if (products.size() != 2) {
+        return false;
     }
-    return false;
+
+    if ((products[0].length() < 3 || products[0].length() > 5) || (products[1].length() < 3 || products[1].length() > 5)) {
+        return false;
+    }
+    
+    return true;
 }
 
 bool TypeChecker::is_ask_bid(const string& s) {

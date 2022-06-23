@@ -68,6 +68,7 @@ void AppMain::enterOffer() {
             cout << "Invalid product " << tokens[0] << endl;
         }
     } else {
+        transform(tokens[0].begin(), tokens[0].end() ,tokens[0].begin(), ::toupper);
         try {
             OrderBookEntry obe = CSVReader::stringsToOBE(
                 tokens[1],
@@ -76,7 +77,12 @@ void AppMain::enterOffer() {
                 tokens[0],
                 OrderBookType::ask
             );
-            orderBook.insertOrder(obe);
+            if (wallet.canFulfillOrder(obe)) {
+                cout << "Wallet looks good." << endl; 
+                orderBook.insertOrder(obe);
+            } else {
+                cout << "Wallet has insufficient funds." << endl;
+            }
         } catch (exception& e) {
             cout << "Bad OrderBookEntry input" << endl;
         }
@@ -111,6 +117,7 @@ void AppMain::enterBid() {
             cout << "Invalid product " << tokens[0] << endl;
         }
     } else {
+        transform(tokens[0].begin(), tokens[0].end() ,tokens[0].begin(), ::toupper);
         try {
             OrderBookEntry obe = CSVReader::stringsToOBE(
                 tokens[1],
