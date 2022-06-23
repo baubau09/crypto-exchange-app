@@ -3,6 +3,9 @@
 #include <string>
 #include <map>
 #include "OrderBookEntry.h"
+#include "CSVReader.h"
+#include <vector>
+#include <string>
 #include <iostream>
 
 class Wallet 

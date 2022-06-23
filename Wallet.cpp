@@ -49,6 +49,21 @@ bool Wallet::containsCurrency(std::string type, double amount) {
 }
 
 bool Wallet::canFulfillOrder(OrderBookEntry order) {
+    vector<string> currencies = CSVReader::tokenise(order.getProduct(), '/');
+
+    // ask
+    if (order.getOrderType() == OrderBookType::ask) {
+        double amount = order.getAmount();
+        string currency = currencies[0];
+        return containsCurrency(currency, amount);
+    }
+
+    // bid 
+    if (order.getOrderType() == OrderBookType::bid) {
+        double amount = order.getAmount() * order.getPrice();
+        string currency = currencies[1];
+        return containsCurrency(currency, amount);
+    }
 
     return false;
 }
