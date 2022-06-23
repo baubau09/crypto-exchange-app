@@ -76,9 +76,9 @@ void AppMain::enterOffer() {
                 tokens[2],
                 currentTime,
                 tokens[0],
-                OrderBookType::ask,
-                "simuser"
+                OrderBookType::ask
             );
+            obe.setUsername("simuser");
 
             if (wallet.canFulfillOrder(obe)) {
                 cout << "Wallet looks good and can fulfill order." << endl;
@@ -128,9 +128,9 @@ void AppMain::enterBid() {
                 tokens[2],
                 currentTime,
                 tokens[0],
-                OrderBookType::bid,
-                "simuser"
+                OrderBookType::bid
             );
+            obe.setUsername("simuser");
 
             if (wallet.canFulfillOrder(obe)) {
                 cout << "Wallet looks good." << endl; 
