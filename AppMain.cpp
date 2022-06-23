@@ -215,7 +215,7 @@ void AppMain::processUserOption(int userOption) {
 void AppMain::init() {
     int userOption = 0;
     currentTime = orderBook.getEarliestTime();
-    wallet.insertCurrency("BTC",20);
+    wallet.insertCurrency("BTC",10);
     do {
         printMenu();
         userOption = getUserOption();

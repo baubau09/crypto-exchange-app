@@ -127,7 +127,7 @@ vector<OrderBookEntry> OrderBook::matchAsksToBids(string product, string timesta
                     break;
                 }
 
-                if (bid.getAmount() < ask.getAmount()) {
+                if (bid.getAmount() < ask.getAmount() && bid.getAmount() > 0) {
                     sale.setAmount(bid.getAmount());
                     sales.push_back(sale);
                     ask.setAmount(ask.getAmount() - bid.getAmount());
