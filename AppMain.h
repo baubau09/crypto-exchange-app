@@ -8,6 +8,7 @@
 #include "OrderBookEntry.h"
 #include "OrderBook.h"
 #include "TypeChecker.h"
+#include "Wallet.h"
 using namespace std;
 
 class AppMain {
@@ -16,6 +17,7 @@ class AppMain {
         void init();
     private:
         OrderBook orderBook{"20200601.csv"};
+        Wallet wallet;
         string currentTime;
         void printMenu();
         void printHelp();

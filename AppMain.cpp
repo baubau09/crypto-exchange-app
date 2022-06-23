@@ -130,6 +130,7 @@ void AppMain::enterBid() {
 
 void AppMain::printWallet() {
     cout << "Your wallet is empty. " << endl;
+    cout << wallet.toString() << endl;
 }
         
 void AppMain::goToNextTimeFrame() {
@@ -193,6 +194,7 @@ void AppMain::processUserOption(int userOption) {
 void AppMain::init() {
     int userOption = 0;
     currentTime = orderBook.getEarliestTime();
+    wallet.insertCurrency("BTC",10);
     do {
         printMenu();
         userOption = getUserOption();
